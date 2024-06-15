@@ -11,7 +11,7 @@ export default {
         "brand-light":'#2EBF91',
          "brand-dark": "#1AC073",
          "white": "#F0FAF7",
-         "yellow":"#F3BA00",
+         "yellowish":"#F3BA00",
           "grey":"#F2F2F2",
         
        
