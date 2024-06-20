@@ -12,11 +12,11 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Foodies_frontend">
     <ToastContainer/>
     <Navbar/>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/Foodies_frontend" element={<Home />} />
         <Route path="/menu" element={<Menu />} /> 
         <Route path="/placeorder" element={<PlaceOrder/>}/>
         <Route path="/myorders" element={<MyOrders/>}/>
