@@ -6,7 +6,7 @@ export const ChangeToCartData=createAsyncThunk("cartData",async(tokenidobj)=>{
   console.log(tokenidobj)
   // const AuthStr = `Bearer ${tokenidobj.token}`;
   const token=tokenidobj.token
-  const response=await axios.post(`${import.meta.env.VITE_URL}api/cart/${tokenidobj.action}`,{"itemId":tokenidobj.id},{headers: {token}});
+  const response=await axios.post(`${import.meta.env.VITE_BACKENDURL}api/cart/${tokenidobj.action}`,{"itemId":tokenidobj.id},{headers: {token}});
 
   if(response.data.success)
     {
@@ -57,11 +57,14 @@ const CartSlice = createSlice({
           : item
       );
     },
+    removeAllItemsFromCart:(state,action)=>{
+      state.cart=[]
+    }
   },
  
 });
 
-export const { addToCart, removeFromCart, incrementQty, decrementQty } =
+export const { addToCart, removeFromCart, incrementQty, decrementQty ,removeAllItemsFromCart} =
   CartSlice.actions;
 export default CartSlice.reducer;
 // 
