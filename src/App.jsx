@@ -16,7 +16,7 @@ const App = () => {
     <ToastContainer/>
     <Navbar/>
       <Routes>
-        <Route exact path="/Foodies_frontend" element={<Home />} />
+        <Route  path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} /> 
         <Route path="/placeorder" element={<PlaceOrder/>}/>
         <Route path="/myorders" element={<MyOrders/>}/>
