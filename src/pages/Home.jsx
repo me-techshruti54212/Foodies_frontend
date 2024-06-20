@@ -10,8 +10,7 @@ import LoginPage from "../components/LoginPage";
 const Home = () => {
   return (
     <>
-      {/* <ToastContainer />
-      <Navbar /> */}
+     
       <HeroSection />
       <Menu />
       <Cart />
