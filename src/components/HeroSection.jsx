@@ -23,7 +23,7 @@ const HeroSection = () => {
             placeholder="Search food you love"
             onChange={(e) => dispatch(filterSearch(e.target.value))}
           />
-          <Button property="p-4 lg:px-7 rounded-r-xl bg-yellow">Search</Button>
+          <Button property="p-4 lg:px-7 rounded-r-xl bg-yellowish">Search</Button>
         </div>
       </div>
       <img className="w-[35vw] hidden sm:block" src={cuate} />

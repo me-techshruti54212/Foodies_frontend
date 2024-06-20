@@ -11,7 +11,7 @@ const FoodData = useSelector((state) => state.foodlist.data);
   const selectedCategory = useSelector((state) => state.category.category);
   const [categories, setCategories] = useState([]);
   const listUniqueCategories = () => {
-    const allcategories = [...new Set(FoodData.map((food) => food.category))];
+    const allcategories = [...new Set(FoodData?.map((food) => food.category))];
     setCategories(allcategories);
   };
 
@@ -22,6 +22,8 @@ const FoodData = useSelector((state) => state.foodlist.data);
     dispatch(FetchFood())
   }, []);
   return (
+    <>
+
     <div className="text-black  p-5 ">
       <h3 className="font-semibold ">Home Kitchen</h3>
       <p className="font-mono mt-2 mb-5 text-lg ">Find the best foods here..</p>
@@ -53,6 +55,7 @@ const FoodData = useSelector((state) => state.foodlist.data);
 
       <FoodItems />
     </div>
+    </>
   );
 };
 

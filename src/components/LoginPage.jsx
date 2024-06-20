@@ -22,7 +22,7 @@ const LoginPage = () => {
   };
   const handleEventLoginSignUp = async (e) => {
     e.preventDefault();
-    var newUrl = `${import.meta.env.VITE_URL}`;
+    var newUrl = `${import.meta.env.VITE_BACKENDURL}`;
     if (status === "SignIn") {
       newUrl += "api/user/login";
     } else {

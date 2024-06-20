@@ -1,5 +1,4 @@
 import React from "react";
-import cartlock from "../assets/cartlock.png";
 import { incrementQty, decrementQty } from "../redux/slices/CartSlice";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -19,7 +18,7 @@ const ItemCard = ({ item }) => {
       {/* <Toaster reverseOrder={false} position="top-right"/> */}
       <div className="shadow-sm  border-2 flex p-2 w-[70vw] rounded-[25px] mx-auto">
         <img
-          src={`http://localhost:8000/images/${item.image}`}
+          src={`${import.meta.env.VITE_BACKENDURL}images/${item.image}`}
           className="w-[50px] h-[65px] ml-5 mr-4"
         />
         <div className="m-auto w-[85%] flex flex-col gap-2 ">

@@ -14,7 +14,7 @@ const FoodCard = ({ item }) => {
 
       <div className="w-[270px] p-2 flex flex-col gap-3  shadow-lg rounded-[10px] bg-[#E8E4C2] ">
         <img
-          src={`${import.meta.env.VITE_URL}images/${item.image}`}
+          src={`${import.meta.env.VITE_BACKENDURL}images/${item.image}`}
           className="w-[100%] h-[150px] "
         />
         <div className="flex justify-between ">
@@ -26,14 +26,18 @@ const FoodCard = ({ item }) => {
           <Button
             property="bg-green-300 px-2 py-1 rounded-[10px] font-medium hover:bg-brand-dark"
             handleOnClick={() => {
-              dispatch(addToCart({ ...item, qty: 1 }));
+            
 
               if(token)
               {
-                
+                dispatch(addToCart({ ...item, qty: 1 }));
            dispatch(ChangeToCartData({id:`${item._id}`,token,action:"add"}))
+           toast.success(`${item.name} is Added`);
+
            }
-              toast.success(`${item.name} is Added`);
+           else{
+            toast("Please login to add items")
+           }
 
             }}
           >

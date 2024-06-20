@@ -21,10 +21,10 @@ const Cart = () => {
     (totalQty, item) => totalQty + item.qty * item.price,
     0
   );
+  // console.log(cartItems)
 
   // console.log(cartItems.length)
   return (
-   
     <>
  <div
         className={`flex justify-center items-center h-full w-full fixed top-0 border backdrop-blur-md ${
@@ -55,7 +55,7 @@ const Cart = () => {
                   </div>
                   <Button
                     property="bg-green-300 px-3 py-2 rounded-[10px] font-medium mx-auto "
-                    handleOnClick={() => navigate("/success")}
+                    handleOnClick={() => navigate("/placeorder")}
                   >
                     Checkout
                   </Button>
