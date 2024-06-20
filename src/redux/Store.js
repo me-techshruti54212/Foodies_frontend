@@ -9,6 +9,9 @@ import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import localStorage from "redux-persist/es/storage/session";
 import { FLUSH, REHYDRATE, PAUSE,PERSIST,PURGE,REGISTER,} from 'redux-persist'
+import OrderSlice from "./slices/OrderSlice";
+
+import FetchOrdersSlice from "./slices/FetchOrdersSlice";
 // import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
@@ -22,6 +25,8 @@ const reducer = combineReducers({
   search: SearchSlice,
   signin: SigninSlice,
   foodlist: FetchFoodListSlice,
+  order:OrderSlice,
+  foodorders:FetchOrdersSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
