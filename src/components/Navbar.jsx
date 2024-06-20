@@ -10,11 +10,12 @@ import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { openLogin, setToken } from "../redux/slices/SigninSlice";
 import profile_icon from "../assets/profile_icon.png";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const [nav, setnav] = useState(false);
   const navigate = useNavigate();
-
+const cartItems=useSelector(state=>state.cart.cart)
   const [profile_dropdown, setProfile_DropDown] = useState(false);
 
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Navbar = () => {
   }, []);
   return (
     <nav>
-      <div className="bg-brand-dark flex items-center justify-between px-10 py-2  relative">
+      <div className="bg-brand-dark flex items-center justify-between px-10 py-1  relative">
         <img className="w-[9rem] lg:w-[12rem] ml-5 " src={logo} />
 
         <div
@@ -66,8 +67,16 @@ const Navbar = () => {
           <NavLink to="/contact">Contact</NavLink>
         </div>
 
-        <div className="flex gap-3 items-center">
-          <img src={cartlock} className="mr-3 " />
+        <div className="flex gap-3 items-center relative ">
+              <div className="relative  mr-3" onClick={()=>{
+              cartItems.length ? token?  navigate("/placeorder") :toast.error("SignIn to Place Order"):
+              toast.error(`Cart Is Empty`);
+              }
+            }>
+          <img src={cartlock} className=" w-[26px]" />
+          <span className="absolute top-[6px] left-[3px] cursor-pointer" title="Place order">✅</span>
+          </div>
+          
           {!token ? (
             <Button
               property={
@@ -86,7 +95,7 @@ const Navbar = () => {
               />
               {profile_dropdown && (
                 <ul className="p-2  absolute right-[-27%] top-[88%] w-[150px] ">
-                  <li className="p-2 bg-green-300 border cursor-pointer hover:text-black">
+                  <li onClick={()=>navigate("/myorders")} className="p-2 bg-green-300 border cursor-pointer hover:text-black">
                     My Orders
                   </li>
                   <li
