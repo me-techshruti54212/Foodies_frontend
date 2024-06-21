@@ -19,7 +19,7 @@ const MyOrders = () => {
  
     {data? (<div className=" m-6 w-[85%] mx-auto">
       <h1 className="mb-2 text-brand-light text-[1.8rem]">Your Orders</h1>
-      <div className="relative overflow-x-auto ">
+      <div className="overflow-x-auto ">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

@@ -9,7 +9,7 @@ const MyOrdersList = ({ order }) => {
       );
       const totalQtyOfItems=order.items.reduce((totalQty,item)=>totalQty+item.qty,0)
   return (
-    <tbody>
+    <tbody className="bg-white border-b">
       <tr className="bg-white border-b">
         <td className="px-6 py-4   w-[40%]">
           {order.items.map((item) => `${item.name} X ${item.qty} , `)}

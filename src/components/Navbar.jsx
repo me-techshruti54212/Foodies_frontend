@@ -15,7 +15,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Navbar = () => {
   const [nav, setnav] = useState(false);
   const navigate = useNavigate();
-const cartItems=useSelector(state=>state.cart.cart)
+  const cartItems = useSelector((state) => state.cart.cart);
   const [profile_dropdown, setProfile_DropDown] = useState(false);
 
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const cartItems=useSelector(state=>state.cart.cart)
         <div
           className={`${
             nav
-              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#90ee90] h-screen justify-center "
+              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#1AC073] h-screen justify-center "
               : "hidden"
           } sm:flex gap-7`}
         >
@@ -66,17 +66,27 @@ const cartItems=useSelector(state=>state.cart.cart)
           <NavLink to="/menu">Menu</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
-
-        <div className="flex gap-3 items-center relative ">
-              <div className="relative  mr-3" onClick={()=>{
-              cartItems.length ? token?  navigate("/placeorder") :toast.error("SignIn to Place Order"):
-              toast.error(`Cart Is Empty`);
-              }
-            }>
-          <img src={cartlock} className=" w-[26px]" />
-          <span className="absolute top-[6px] left-[3px] cursor-pointer" title="Place order">✅</span>
+  
+   <div className="flex gap-3 items-center relative ">
+          <div
+            className="relative  mr-3"
+            onClick={() => {
+              cartItems.length
+                ? token
+                  ? navigate("/placeorder")
+                  : toast.error("SignIn to Place Order")
+                : toast.error(`Cart Is Empty`);
+            }}
+          >
+            <img src={cartlock} className=" w-[26px]" />
+            <span
+              className="absolute top-[6px] left-[3px] cursor-pointer"
+              title="Place order"
+            >
+              ✅
+            </span>
           </div>
-          
+        
           {!token ? (
             <Button
               property={
@@ -95,7 +105,10 @@ const cartItems=useSelector(state=>state.cart.cart)
               />
               {profile_dropdown && (
                 <ul className="p-2  absolute right-[-27%] top-[88%] w-[150px] ">
-                  <li onClick={()=>navigate("/myorders")} className="p-2 bg-green-300 border cursor-pointer hover:text-black">
+                  <li
+                    onClick={() => navigate("/myorders")}
+                    className="p-2 bg-green-300 border cursor-pointer hover:text-black"
+                  >
                     My Orders
                   </li>
                   <li
@@ -106,16 +119,21 @@ const cartItems=useSelector(state=>state.cart.cart)
                   </li>
                 </ul>
               )}
+             
             </div>
+           
           )}
           <div onClick={handleNav} className="sm:hidden">
             {nav ? (
-              <AiOutlineClose size={20} className="z-10 absolute" />
+              <AiOutlineClose size={20}  />
             ) : (
               <AiOutlineMenu size={20} />
             )}
+          </div> 
           </div>
-        </div>
+         
+       
+       
       </div>
     </nav>
   );
