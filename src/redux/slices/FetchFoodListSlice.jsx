@@ -14,7 +14,7 @@ const FetchFoodListSlice = createSlice({
     isError: false,
   },
   extraReducers: (builder) => {
-    builder.addCase(FetchFood.pending, (state, action) => {
+    builder.addCase(FetchFood.pending, (state,action) => {
       state.isLoading = true;
     });
     builder.addCase(FetchFood.fulfilled, (state, action) => {
@@ -22,7 +22,8 @@ const FetchFoodListSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(FetchFood.rejected, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
+      state.isLoading=false;
       state.isError = true;
     });
   },
