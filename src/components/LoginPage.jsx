@@ -57,7 +57,7 @@ const LoginPage = () => {
   };
   return (
 
-    login && (
+    
       <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
         <form
           className="flex flex-col  p-4 gap-4 border rounded-[25px] bg-[#b19671]"
@@ -148,7 +148,7 @@ const LoginPage = () => {
           )}
         </form>
       </div>
-    )
+    
   );
 };
 
