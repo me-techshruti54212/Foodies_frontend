@@ -92,7 +92,11 @@ const Navbar = () => {
               property={
                 "lg:px-3 sm:py-1 sm:px-2 px-1 sm:border border rounded-[10px] sm:rounded-[25px] hover:bg-slate-100 hover:text-black"
               }
-              handleOnClick={() => dispatch(openLogin(true))}
+              handleOnClick={() =>
+              {dispatch(openLogin(true));
+              navigate("/login");
+              }
+              }
             >
               Sign In
             </Button>

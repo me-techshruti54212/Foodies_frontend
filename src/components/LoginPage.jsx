@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setToken, openLogin } from "../redux/slices/SigninSlice";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 const LoginPage = () => {
@@ -15,6 +16,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const eventHandle = (e) => {
     if (e.target.name === "name") setName(e.target.value);
     else if (e.target.name === "email") setEmail(e.target.value);
@@ -22,6 +24,7 @@ const LoginPage = () => {
   };
   const handleEventLoginSignUp = async (e) => {
     e.preventDefault();
+    navigate("/")
     var newUrl = `${import.meta.env.VITE_BACKENDURL}`;
     if (status === "SignIn") {
       newUrl += "api/user/login";
@@ -53,6 +56,7 @@ const LoginPage = () => {
     }
   };
   return (
+
     login && (
       <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
         <form
@@ -69,6 +73,7 @@ const LoginPage = () => {
                 setName("");
                 setEmail("");
                 setPassword("");
+                navigate("/")
               }}
             />
           </div>
