@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
@@ -9,9 +8,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 const LoginPage = () => {
   const [status, setStatus] = useState("SignIn");
-  const login = useSelector((state) => state.signin.signin);
-  const [message,setMessage]=useState("")
-  const token = useSelector((state) => state.signin.token);
+  // const login = useSelector((state) => state.signin.signin);
+  // const [message,setMessage]=useState("")
+  // const token = useSelector((state) => state.signin.token);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
