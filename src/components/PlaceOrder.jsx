@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { PlaceFoodOrder } from "../redux/slices/OrderSlice";
 import { useDispatch } from "react-redux";
 import { removeAllItemsFromCart } from "../redux/slices/CartSlice";
+import { TailSpin } from "react-loader-spinner";
 const PlaceOrder = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName,setlastName]=useState("")
@@ -18,7 +19,7 @@ const PlaceOrder = () => {
   const cartItems=useSelector((state)=>state.cart.cart)
   const token=useSelector((state)=>state.signin.token)
   const dispatch=useDispatch()
-
+  const isloading=useSelector((state)=>state.order.isLoading)
   const totalPriceOfItems = cartItems.reduce(
     (totalQty, item) => totalQty + item.qty * item.price,
     0
@@ -39,36 +40,37 @@ dispatch(removeAllItemsFromCart())
   }
   return (
     <div className="h-screen bg-brand-dark flex flex-wrap sm:justify-around justify-center text-white items-center">
-      <form className=" p-4 text-black flex flex-col  rounded-[20px] gap-5 " onSubmit={()=>placeOrder}>
+      <form className=" p-4 text-black flex flex-col  rounded-[20px] gap-5 " onSubmit={placeOrder} >
         <h3>Delivery Information</h3>
         <div className="flex gap-3 justify-between ">
-          <input required className="p-1 rounded outline-none "
+          <input className="p-1 rounded outline-none "
+           required
             type="text"
             name="firstName"
             placeholder="First name" onChange={(e)=>setfirstName(e.target.value)}
             value={firstName}
           />
-          <input required className=" p-1 rounded outline-none "
+          <input  className=" p-1 rounded outline-none "
             type="text"
             name="lastName"
             placeholder="Last name"  onChange={(e)=>setlastName(e.target.value)}
-            value={lastName}
+            value={lastName} required
           />
         </div>
 
      
         <div className="flex  gap-3 justify-between ">
-          <input required  className=" p-1 rounded outline-none "
+          <input   className=" p-1 rounded outline-none "
             type="text"
             name="city"
             placeholder="City" onChange={(e)=>setCity(e.target.value)}
-            value={city}
+            value={city} required
           />
           <input required className=" p-1 rounded outline-none "
             type="text"
             name="state"
             placeholder="State"  onChange={(e)=>setState(e.target.value)}
-            value={state}
+            value={state} 
           />
         </div>
         <div className="flex justify-between ">
@@ -92,11 +94,12 @@ dispatch(removeAllItemsFromCart())
           placeholder="Phone"  onChange={(e)=>setPhone(e.target.value)}
           value={phone}
         />
-           <input required className=" p-1 rounded outline-none "
+           <input className=" p-1 rounded outline-none "
           type="email"
           name="email"
           placeholder="Email"  onChange={(e)=>setEmail(e.target.value)}
           value={email}
+          required 
         />
         <input required className=" p-1 rounded outline-none "
           type="text"
@@ -104,7 +107,23 @@ dispatch(removeAllItemsFromCart())
           placeholder="Street"  onChange={(e)=>setStreet(e.target.value)}
           value={street}
         />
-       <Button handleOnClick={placeOrder} property={"w-[200px] bg-yellow-500 rounded  p-2 tracking-tighter"}>Proceed to Payment</Button>
+         
+       <Button  property={"w-[200px] flex justify-between bg-yellow-500 rounded  p-2 tracking-tighter"}>Proceed to Payment
+       {isloading === true ? (
+        <>
+        <TailSpin 
+          visible={true}
+          height="20"
+          width="20"
+          color="#111"
+          ariaLabel="tail-spin-loading"
+          radius="0.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+        </>
+      ) : null}
+      </Button>
       </form>
       <div className="w-[40%] bg-grey-800  p-4 mt-10 flex flex-col gap-3 font-semibold">
         <h4>Cart Totals</h4>

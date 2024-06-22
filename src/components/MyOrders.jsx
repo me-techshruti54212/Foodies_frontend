@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import axios from 'axios'
 import { FetchFoodOrders } from '../redux/slices/FetchOrdersSlice'
 import MyOrdersList from './MyOrdersList'
+import { TailSpin } from 'react-loader-spinner'
 const MyOrders = () => {
   const dispatch=useDispatch()
     const token=useSelector((state)=>state.signin.token)
     const data=useSelector((state)=>state.foodorders.data)
+    const isloading=useSelector((state)=>state.foodorders.isLoading)
     useEffect(()=>{
         if(token)
             {
@@ -17,8 +18,24 @@ const MyOrders = () => {
   return (
    <>
  
-    {data? (<div className=" m-6 w-[85%] mx-auto">
+   <div className=" m-6 w-[85%] mx-auto">
       <h1 className="mb-2 text-brand-light text-[1.8rem]">Your Orders</h1>
+      {isloading === true ? (
+        <div className='m-4 flex flex-col items-center '>
+        <TailSpin 
+          visible={true}
+          height="30"
+          width="30"
+          color="#111"
+          ariaLabel="tail-spin-loading"
+          radius="0.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+        <p className='text-black font-semibold text-xl'>Loading...</p>
+        </div>
+      ) : null}
+      {data && !isloading  &&
       <div className="overflow-x-auto ">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -42,13 +59,15 @@ const MyOrders = () => {
         
         </table>
       </div>
-    </div>) :
-    (
+      }
+   {!data && !isloading &&
+
       <div className='text-brand-dark font-semibold text justify-center h-[500px] items-center flex border text-lg'>
         No Orders Placed
       </div>
-    )
-    }
+   }
+    
+    </div>
     </>
   )
 }
