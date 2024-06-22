@@ -67,7 +67,7 @@ const Cart = () => {
                   <img src={cartlock} className="w-[5rem] " />
                   <h2>Cart is Empty</h2>
                   <p className="font-semibold">Add some items to the cart to checkout</p>
-                  <p>If items already added , <b>Register/SignIn</b> to see the items added </p>
+                  <p>If items already added , <b className="cursor-pointer" onClick={()=>{navigate("/login");}}>Register/SignIn</b> to see the items added </p>
                   <Button
                     property="bg-green-300 px-3 py-2 rounded-[10px] font-medium"
                     handleOnClick={() => navigate("/menu")}
