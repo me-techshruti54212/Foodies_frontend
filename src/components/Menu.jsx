@@ -14,13 +14,13 @@ const FoodData = useSelector((state) => state.foodlist.data);
     const allcategories = [...new Set(FoodData?.map((food) => food.category))];
     setCategories(allcategories);
   };
-
-  useEffect(() => {
-    listUniqueCategories();
-  }, []);
   useEffect(() => {
     dispatch(FetchFood())
   }, []);
+  useEffect(() => {
+    listUniqueCategories();
+  }, [FoodData]);
+
   return (
     <>
 
@@ -32,7 +32,7 @@ const FoodData = useSelector((state) => state.foodlist.data);
           property={`border border-gray-400 px-4 md:px-6 py-2 rounded-xl ${
             selectedCategory === "All" && "text-white bg-brand-dark border-none"
           } `}
-          handleOnClick={() => dispatch(changeCategory("All"))}
+          handleOnClick={() => dispatch(changeCategory("All")) }
         >
           All
         </Button>
