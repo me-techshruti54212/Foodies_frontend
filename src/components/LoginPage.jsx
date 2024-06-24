@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { setToken, openLogin } from "../redux/slices/SigninSlice";
 import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
-
+import eye from "../assets/eyeicon.png"
+import eyeslash from "../assets/invisible_pwd.png";
 import axios from "axios";
 const LoginPage = () => {
   const [status, setStatus] = useState("SignIn");
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [type,setType]=useState("password");
   const dispatch = useDispatch();
   const navigate=useNavigate()
   const eventHandle = (e) => {
@@ -55,8 +57,8 @@ const LoginPage = () => {
   };
   return (
    
-    
       <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
+
         <form
           className="flex flex-col  p-4 gap-4 border rounded-[25px] bg-[#b19671]"
           onSubmit={handleEventLoginSignUp}
@@ -83,7 +85,7 @@ const LoginPage = () => {
               name="name"
               value={name}
               onChange={eventHandle}
-              className="p-2 rounded-[10px] text-black"
+              className="p-2 rounded-[10px] text-black outline-none"
             />
           )}
           <input
@@ -93,17 +95,25 @@ const LoginPage = () => {
             value={email}
             required
             onChange={eventHandle}
-            className="p-2 text-black  rounded-[10px]"
+            className="p-2 text-black  rounded-[10px] outline-none"
           />
+          <div className="flex relative items-center">
           <input
-            type="password"
+            type={type}
             placeholder="Enter your password"
             value={password}
             required
             name="password"
             onChange={eventHandle}
-            className="p-2 rounded-[10px] text-black"
+            className="p-2 rounded-[10px] text-black w-full  outline-none"
           />
+          <img src={`${type==="text"? eye : eyeslash}`} className="w-[30px] absolute right-[5px] cursor-pointer " onClick={()=>setType((type)=>{
+            if(type==="password")
+            setType("text")
+            else
+            setType("password")
+          })} />
+          </div>
           <p>
             <input type="checkbox" required />
             By continuing, I agree by the terms of use and privacy policy.
