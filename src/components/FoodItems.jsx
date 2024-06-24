@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import FoodData from "../data/FoodData";
 import FoodCard from "./FoodCard";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -34,7 +33,7 @@ const FoodItems = () => {
         <p className="text-xl font-semibold">Loading...</p>
         </div>
       ) : null}
-      <div className="flex flex-wrap gap-7 my-5 mx-4 justify-center  ">
+      <div className="flex flex-wrap gap-7 my-8 justify-center  ">
      
         {FoodData?.filter((food) => {
           if (category === "All") {
