@@ -31,6 +31,7 @@ const Navbar = () => {
 
     dispatch(setToken(""));
     navigate("/");
+    setProfile_DropDown(false);
   };
   useEffect(() => {
     const handler = (e) => {
@@ -52,7 +53,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="bg-brand-dark flex items-center justify-between px-10 py-1  relative">
-        <img className="w-[9rem] lg:w-[12rem] ml-5 " src={logo} />
+        <img className="w-[7rem] lg:w-[10rem] lg:ml-5 " src={logo} />
 
         <div
           className={`${
@@ -66,10 +67,10 @@ const Navbar = () => {
           <NavLink to="/menu">Menu</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
-  
-   <div className="flex gap-3 items-center relative ">
+
+        <div className="flex gap-3 items-center relative ">
           <div
-            className="relative  mr-3"
+            className="relative  lg:mr-3"
             onClick={() => {
               cartItems.length
                 ? token
@@ -86,17 +87,16 @@ const Navbar = () => {
               ✅
             </span>
           </div>
-        
+
           {!token ? (
             <Button
               property={
                 "lg:px-3 sm:py-1 sm:px-2 px-1 sm:border border rounded-[10px] sm:rounded-[25px] hover:bg-slate-100 hover:text-black"
               }
-              handleOnClick={() =>
-              {dispatch(openLogin(true));
-              navigate("/login");
-              }
-              }
+              handleOnClick={() => {
+                dispatch(openLogin(true));
+                navigate("/login");
+              }}
             >
               Sign In
             </Button>
@@ -110,7 +110,8 @@ const Navbar = () => {
               {profile_dropdown && (
                 <ul className="p-2  absolute right-[-27%] top-[88%] w-[150px] ">
                   <li
-                    onClick={() => navigate("/myorders")}
+                    onClick={() =>{ navigate("/myorders");
+                      setProfile_DropDown(false);}}
                     className="p-2 bg-green-300 border cursor-pointer hover:text-black"
                   >
                     My Orders
@@ -123,21 +124,12 @@ const Navbar = () => {
                   </li>
                 </ul>
               )}
-             
             </div>
-           
           )}
           <div onClick={handleNav} className="sm:hidden">
-            {nav ? (
-              <AiOutlineClose size={20}  />
-            ) : (
-              <AiOutlineMenu size={20} />
-            )}
-          </div> 
+            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
           </div>
-         
-       
-       
+        </div>
       </div>
     </nav>
   );
