@@ -15,7 +15,6 @@ const ItemCard = ({ item }) => {
 
   return (
     <>
-      {/* <Toaster reverseOrder={false} position="top-right"/> */}
       <div className="shadow-sm  border-2 flex p-2 w-[70vw] rounded-[25px] mx-auto">
         <img
           src={`${import.meta.env.VITE_BACKENDURL}images/${item.image}`}

@@ -4,13 +4,12 @@ import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setToken, openLogin } from "../redux/slices/SigninSlice";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
+
 import axios from "axios";
 const LoginPage = () => {
   const [status, setStatus] = useState("SignIn");
-  // const login = useSelector((state) => state.signin.signin);
-  // const [message,setMessage]=useState("")
-  // const token = useSelector((state) => state.signin.token);
+  const [message,setMessage]=useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,7 +54,7 @@ const LoginPage = () => {
     }
   };
   return (
-
+   
     
       <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
         <form
