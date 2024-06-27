@@ -19,11 +19,11 @@ const HeroSection = () => {
         </p>
         <div className="text-center sm:text-start">
           <input
-            className="p-4 outline-none  text-black rounded-l-xl lg:w-[20rem] text-capitalize"
+            className="p-3 outline-none  text-black rounded-l-xl lg:w-[18rem] text-capitalize"
             placeholder="Search food you love"
             onChange={(e) => dispatch(filterSearch(e.target.value))}
           />
-          <Button property="p-4 lg:px-7 rounded-r-xl bg-yellowish">Search</Button>
+          <Button property="p-3 lg:px-7 rounded-r-xl bg-yellowish">Search</Button>
         </div>
       </div>
       <img className="w-[35vw] hidden sm:block" src={cuate} />
