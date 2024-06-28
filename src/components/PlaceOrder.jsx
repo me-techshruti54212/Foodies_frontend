@@ -125,19 +125,19 @@ dispatch(removeAllItemsFromCart())
       ) : null}
       </Button>
       </form>
-      <div className="w-[40%] bg-grey-800  p-4 mt-10 flex flex-col gap-3 font-semibold">
+      <div className="w-[80%] bg-grey-800  p-4 mt-10 flex flex-col gap-3 font-semibold sm:w-[40%] ">
         <h4>Cart Totals</h4>
         <div className="font-semibold flex  flex-col gap-3">
-          <div className="flex justify-between border-b-2  ">
+          <div className="flex justify-between border-b-2 flex-row ">
             <p>Subtotal</p>
             <p>₹{totalPriceOfItems}</p>
           </div>
-          <div className="flex justify-between border-b-2">
+          <div className="flex justify-between border-b-2  ">
           <p>Delivery Fee</p>
           <p>₹2</p>
 
           </div>
-          <div className="flex justify-between mb-2 font-bold tracking-tight ">
+          <div className="flex justify-between mb-2 font-bold  tracking-tight ">
           <p>Total</p>
           <p>₹{totalPriceOfItems+2}</p>
 

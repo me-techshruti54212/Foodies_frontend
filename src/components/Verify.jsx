@@ -24,7 +24,7 @@ const Verify = () => {
         verifyPayment()
     },[])
   return (
-    <div className='text-black flex flex-col justify-center items-center'>
+    <div className='text-black flex flex-col justify-center items-center mt-4'>
       
         
         <TailSpin 
@@ -37,7 +37,7 @@ const Verify = () => {
           wrapperStyle={{}}
           wrapperClass=""
         />
-        Loading...
+        <p className='font-semibold text-lg'>Loading...</p>
      
     </div>
   )
