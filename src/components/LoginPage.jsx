@@ -4,7 +4,7 @@ import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setToken, openLogin } from "../redux/slices/SigninSlice";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify";
+import toast from "react-hot-toast"
 import eye from "../assets/eyeicon.png"
 import eyeslash from "../assets/invisible_pwd.png";
 import axios from "axios";
@@ -40,23 +40,32 @@ const LoginPage = () => {
 
       
     if (!res) {
-      toast("Some error occured");
+      toast.error("Some error occured",{
+        duration:4000
+      });
     } else if (res.data.success) {
+      toast.success("You have been loggedIn successfully.",{
+        duration:2000
+      })
       // console.log(res.data.token);
       dispatch(setToken(res.data.token));
       localStorage.setItem("token", res.data.token);
+   
       dispatch(openLogin(false));
+
       setName("");
       setEmail("");
       setPassword("");
       setStatus("SignIn");
     } else if (!res.data.success) {
       setMessage(res.data.message);
-      toast(res.data.message);
+      toast.error(res.data.message,{
+        duration:3000
+      });
     }
   };
   return (
-   
+    <>
       <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
 
         <form
@@ -107,7 +116,7 @@ const LoginPage = () => {
             onChange={eventHandle}
             className="p-2 rounded-[10px] text-black w-full  outline-none"
           />
-          <img src={`${type==="text"? eye : eyeslash}`} className="w-[30px] absolute right-[5px] cursor-pointer " onClick={()=>setType((type)=>{
+          <img src={`${type==="text"? eyeslash : eye}`} className="w-[30px] absolute right-[5px] cursor-pointer " onClick={()=>setType((type)=>{
             if(type==="password")
             setType("text")
             else
@@ -156,7 +165,8 @@ const LoginPage = () => {
           )}
         </form>
       </div>
-    
+      {/* <ToastContainer/> */}
+      </>
   );
 };
 

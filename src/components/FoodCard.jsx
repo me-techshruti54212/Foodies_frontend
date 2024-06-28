@@ -31,7 +31,10 @@ const FoodCard = ({ item }) => {
                 );
                 toast.success(`${item.name} is Added`);
               } else {
-                toast("Please login to add items");
+                toast("Please login to add items",{
+                  duration:2000,
+                  icon:"⚠️"
+                });
               }
             }}
           >
