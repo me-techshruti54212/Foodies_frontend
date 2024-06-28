@@ -52,13 +52,13 @@ const Navbar = () => {
   }, []);
   return (
     <nav>
-      <div className="bg-brand-dark flex items-center justify-between px-10 py-1  relative">
+      <div className="bg-brand-dark flex items-center justify-between px-2 sm:px-10 py-1  relative">
         <img className="w-[7rem] lg:w-[10rem] lg:ml-5 " src={logo} />
 
         <div
           className={`${
             nav
-              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#1AC073] h-screen justify-center "
+              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#1AC073] h-[100vh] justify-center "
               : "hidden"
           } sm:flex gap-7`}
         >
@@ -69,29 +69,28 @@ const Navbar = () => {
         </div>
 
         <div className="flex gap-3 items-center relative ">
-          <div
-            className="relative  lg:mr-3"
+          <img
+            src={cartlock}
+            className="w-[20px] sm:w-[24px] relative cursor-pointer lg:mr-3" title="Place Order"
             onClick={() => {
-              cartItems.length
-                ? token
+            token
+                ?   cartItems.length
                   ? navigate("/placeorder")
-                  : toast.error("SignIn to Place Order")
-                : toast.error(`Cart Is Empty`);
+                  : toast("Cart is Empty", {
+                    duration: 2000,
+                    icon:"⚠️"
+                  })
+                : toast("SignIn to Place Order", {
+                    duration: 2000,
+                    icon:"⚠️"
+                  });
             }}
-          >
-            <img src={cartlock} className=" w-[26px]" />
-            <span
-              className="absolute top-[6px] left-[3px] cursor-pointer"
-              title="Place order"
-            >
-              ✅
-            </span>
-          </div>
+          />
 
           {!token ? (
             <Button
               property={
-                "lg:px-3 sm:py-1 sm:px-2 px-1 sm:border border rounded-[10px] sm:rounded-[25px] hover:bg-slate-100 hover:text-black"
+                "lg:px-3 sm:py-1 sm:px-2 px-1 xs:text-sm xs:p-1 sm:text-base sm:border border rounded-[10px] sm:rounded-[25px] hover:bg-slate-100 hover:text-black"
               }
               handleOnClick={() => {
                 dispatch(openLogin(true));
@@ -110,8 +109,10 @@ const Navbar = () => {
               {profile_dropdown && (
                 <ul className="p-2  absolute right-[-27%] top-[88%] w-[150px] ">
                   <li
-                    onClick={() =>{ navigate("/myorders");
-                      setProfile_DropDown(false);}}
+                    onClick={() => {
+                      navigate("/myorders");
+                      setProfile_DropDown(false);
+                    }}
                     className="p-2 bg-green-300 border cursor-pointer hover:text-black"
                   >
                     My Orders
@@ -127,7 +128,7 @@ const Navbar = () => {
             </div>
           )}
           <div onClick={handleNav} className="sm:hidden">
-            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu  className="w-[20px] sm:w-[30px]" />}
           </div>
         </div>
       </div>
