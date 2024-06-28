@@ -3,6 +3,8 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { TailSpin } from "react-loader-spinner";
+
 const Verify = () => {
     const navigate=useNavigate()
     const [searchParams,setSearchParams]=useSearchParams()
@@ -22,8 +24,21 @@ const Verify = () => {
         verifyPayment()
     },[])
   return (
-    <div className='text-black'>
-      Loading
+    <div className='text-black flex flex-col justify-center items-center'>
+      
+        
+        <TailSpin 
+          visible={true}
+          height="20"
+          width="20"
+          color="#111"
+          ariaLabel="tail-spin-loading"
+          radius="0.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+        Loading...
+     
     </div>
   )
 }

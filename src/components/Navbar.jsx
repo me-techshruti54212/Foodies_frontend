@@ -103,7 +103,7 @@ const Navbar = () => {
             <div className="flex flex-col relative" ref={menuRef}>
               <img
                 src={profile_icon}
-                className="w-[28px]  p-1 cursor-pointer  "
+                className="sm:w-[28px] w-[24px] p-1 cursor-pointer  "
                 onClick={() => setProfile_DropDown(!profile_dropdown)}
               />
               {profile_dropdown && (
@@ -128,7 +128,7 @@ const Navbar = () => {
             </div>
           )}
           <div onClick={handleNav} className="sm:hidden">
-            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu  className="w-[20px] sm:w-[30px]" />}
+            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu  className="w-[23px]" />}
           </div>
         </div>
       </div>

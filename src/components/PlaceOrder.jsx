@@ -39,18 +39,18 @@ dispatch(removeAllItemsFromCart())
 
   }
   return (
-    <div className="h-screen bg-brand-dark flex flex-wrap sm:justify-around justify-center text-white items-center">
-      <form className=" p-4 text-black flex flex-col  rounded-[20px] gap-5 " onSubmit={placeOrder} >
-        <h3>Delivery Information</h3>
-        <div className="flex gap-3 justify-between ">
-          <input className="p-1 rounded outline-none "
+    <div className="min-h-screen bg-brand-dark flex flex-wrap sm:justify-around justify-center text-white items-center">
+      <form className=" text-black flex flex-col   gap-5 " onSubmit={placeOrder} >
+        <h3 >Delivery Information</h3>
+        <div className="flex gap-3 justify-between w-full   ">
+          <input className="p-1 rounded outline-none inline-block w-[50%]"
            required
             type="text"
             name="firstName"
             placeholder="First name" onChange={(e)=>setfirstName(e.target.value)}
             value={firstName}
           />
-          <input  className=" p-1 rounded outline-none "
+          <input  className=" p-1 rounded outline-none w-[50%]"
             type="text"
             name="lastName"
             placeholder="Last name"  onChange={(e)=>setlastName(e.target.value)}
@@ -59,28 +59,28 @@ dispatch(removeAllItemsFromCart())
         </div>
 
      
-        <div className="flex  gap-3 justify-between ">
-          <input   className=" p-1 rounded outline-none "
+        <div className="flex  gap-3 justify-between w-full ">
+          <input   className="inline-block w-[50%] p-1 rounded outline-none "
             type="text"
             name="city"
             placeholder="City" onChange={(e)=>setCity(e.target.value)}
             value={city} required
           />
-          <input required className=" p-1 rounded outline-none "
+          <input required className="inline-block w-[50%] p-1 rounded outline-none "
             type="text"
             name="state"
             placeholder="State"  onChange={(e)=>setState(e.target.value)}
             value={state} 
           />
         </div>
-        <div className="flex justify-between ">
-          <input required className=" p-1 rounded outline-none "
+        <div className="flex gap-3 justify-between w-full">
+          <input required className="inline-block w-[50%] p-1 rounded outline-none "
             type="number"
             name="zipcode"
             placeholder="Zip code"  onChange={(e)=>setZipcode(e.target.value)}
             value={zipcode}
           />
-          <input required className=" p-1 rounded outline-none "
+          <input required className="inline-block w-[50%] p-1 rounded outline-none "
             type="text"
             name="country"
             placeholder="Country"  onChange={(e)=>setCountry(e.target.value)}
@@ -101,7 +101,7 @@ dispatch(removeAllItemsFromCart())
           value={email}
           required 
         />
-        <input required className=" p-1 rounded outline-none "
+        <input required className="w-full p-1 rounded outline-none "
           type="text"
           name="street"
           placeholder="Street"  onChange={(e)=>setStreet(e.target.value)}
