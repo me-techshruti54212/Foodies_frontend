@@ -16,6 +16,7 @@ const FoodData = useSelector((state) => state.foodlist.data);
   };
   useEffect(() => {
     dispatch(FetchFood())
+    window.scroll(0,0);
   }, []);
   useEffect(() => {
     listUniqueCategories();

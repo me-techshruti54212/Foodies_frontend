@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Button from "./Button";
 import { useSelector } from "react-redux";
 import { PlaceFoodOrder } from "../redux/slices/OrderSlice";
@@ -24,6 +24,10 @@ const PlaceOrder = () => {
     (totalQty, item) => totalQty + item.qty * item.price,
     0
   );
+  useEffect(()=>{
+    window.scroll(0,0);
+
+  },[])
   const placeOrder=async(e)=>{
     e.preventDefault();
   let orderItems=cartItems;

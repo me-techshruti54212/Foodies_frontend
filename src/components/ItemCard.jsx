@@ -18,7 +18,7 @@ const ItemCard = ({ item }) => {
       <div className="shadow-sm  border-2 flex p-2 w-[70vw] rounded-[25px] mx-auto">
         <img
           src={`${import.meta.env.VITE_BACKENDURL}images/${item.image}`}
-          className="w-[50px] h-[65px] ml-5 mr-4"
+          className="w-[55px] h-[55px] ml-5 mr-4 rounded-[15px]"
         />
         <div className="m-auto w-[85%] flex flex-col gap-2 ">
           <div className="flex items-center justify-between">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import cartlock from "../assets/cartlock.png";
@@ -21,9 +21,7 @@ const Cart = () => {
     (totalQty, item) => totalQty + item.qty * item.price,
     0
   );
-  // console.log(cartItems)
-
-  // console.log(cartItems.length)
+ 
   return (
     <>
  <div
