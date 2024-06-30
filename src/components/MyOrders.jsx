@@ -35,7 +35,7 @@ const MyOrders = () => {
         <p className='text-black font-semibold text-xl'>Loading...</p>
         </div>
       ) : null}
-      {data.length>0 && !isloading  &&
+      {data?.length>0 && !isloading  &&
       <div className="overflow-x-auto ">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -60,7 +60,7 @@ const MyOrders = () => {
         </table>
       </div>
       }
-   {data.length==0 && !isloading &&
+   {data?.length==0 && !isloading &&
 
       <div className='text-brand-dark font-semibold text justify-center h-[50vh] items-center flex  text-lg'>
         No Orders Placed
