@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast"
 import eye from "../assets/eyeicon.png"
 import eyeslash from "../assets/invisible_pwd.png";
+import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 const LoginPage = () => {
   const [status, setStatus] = useState("SignIn");
@@ -15,6 +16,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [type,setType]=useState("password");
+  const [recaptcha,setReCaptcha]=useState("")
   const dispatch = useDispatch();
   const navigate=useNavigate()
   const eventHandle = (e) => {
@@ -22,9 +24,12 @@ const LoginPage = () => {
     else if (e.target.name === "email") setEmail(e.target.value);
     else if (e.target.name === "password") setPassword(e.target.value);
   };
+  const Verifyfunc=(value)=>{
+    setReCaptcha(value);
+    console.log(value)
+  }
   const handleEventLoginSignUp = async (e) => {
     e.preventDefault();
-    navigate("/")
     var newUrl = `${import.meta.env.VITE_BACKENDURL}`;
     if (status === "SignIn") {
       newUrl += "api/user/login";
@@ -36,6 +41,7 @@ const LoginPage = () => {
       "name": name,
       "email": email,
       "password": password,
+      "recaptcha":recaptcha,
     });
 
       
@@ -57,12 +63,15 @@ const LoginPage = () => {
       setEmail("");
       setPassword("");
       setStatus("SignIn");
+
     } else if (!res.data.success) {
       setMessage(res.data.message);
       toast.error(res.data.message,{
         duration:3000
       });
     }
+    navigate("/")
+
   };
   return (
     <>
@@ -127,7 +136,13 @@ const LoginPage = () => {
             <input type="checkbox" required />
             By continuing, I agree by the terms of use and privacy policy.
           </p>
-          <Button property={"bg-black mt-10 p-2 rounded-[10px]"}>
+          
+           <ReCAPTCHA sitekey="6Le7pwQqAAAAAKWZz2cLo1zx0OIKy2fY3zftRIa8" onChange={Verifyfunc} 
+           />
+           <p id="check" className="text-grey"></p>
+          
+
+          <Button property={`bg-black mt-6 p-2 rounded-[10px] ${recaptcha ? "" :"opacity-20"}`} disablefunc={!recaptcha}>
             {status === "SignUp" ? "Create Account" : "SignIn"}
           </Button>
 
