@@ -142,7 +142,7 @@ const LoginPage = () => {
            <p id="check" className="text-grey"></p>
           
 
-          <Button property={`bg-black mt-6 p-2 rounded-[10px] ${recaptcha ? "" :"opacity-20"}`} disablefunc={!recaptcha}>
+          <Button property={`bg-black  p-2 rounded-[10px] ${recaptcha ? "" :"opacity-30"}`} disablefunc={!recaptcha}>
             {status === "SignUp" ? "Create Account" : "SignIn"}
           </Button>
 
