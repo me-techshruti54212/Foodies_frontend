@@ -9,7 +9,11 @@ import eye from "../assets/eyeicon.png"
 import eyeslash from "../assets/invisible_pwd.png";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import OAuth from "./OAuth";
+import Verifymail from "./Verifymail";
 const LoginPage = () => {
+  const [loading,setLoading]=useState(false);
   const [status, setStatus] = useState("SignIn");
   const [message,setMessage]=useState("");
   const [name, setName] = useState("");
@@ -30,6 +34,8 @@ const LoginPage = () => {
   }
   const handleEventLoginSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     var newUrl = `${import.meta.env.VITE_BACKENDURL}`;
     if (status === "SignIn") {
       newUrl += "api/user/login";
@@ -43,21 +49,27 @@ const LoginPage = () => {
       "password": password,
       "recaptcha":recaptcha,
     });
-
       
     if (!res) {
       toast.error("Some error occured",{
         duration:4000
       });
-    } else if (res.data.success) {
-      toast.success("You have been loggedIn successfully.",{
+    } 
+    else if(res.data.signupsuccess)
+    {
+      toast.success(res.data.message,{
+        duration:2000
+      })
+    }
+    else if (res.data.success) {
+      toast.success(res.data.message,{
         duration:2000
       })
       // console.log(res.data.token);
-      dispatch(setToken(res.data.token));
+     await dispatch(setToken(res.data.token));
       localStorage.setItem("token", res.data.token);
    
-      dispatch(openLogin(false));
+      await dispatch(openLogin(false));
 
       setName("");
       setEmail("");
@@ -71,14 +83,14 @@ const LoginPage = () => {
       });
     }
     navigate("/")
-
+    setLoading(false)
   };
   return (
     <>
-      <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s]">
+      <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s] ">
 
         <form
-          className="flex flex-col  p-4 gap-4 border rounded-[25px] bg-[#b19671]"
+          className="flex flex-col  p-4 gap-4 border rounded-[25px] bg-[#7edd7e]"
           onSubmit={handleEventLoginSignUp}
         >
           <div className="flex items-center justify-between">
@@ -132,6 +144,9 @@ const LoginPage = () => {
             setType("password")
           })} />
           </div>
+        {status=="SignIn" &&  <Link to="/forgot-password" className="font-semibold " >
+            Forgot Password ?
+          </Link>}
           <p>
             <input type="checkbox" required />
             By continuing, I agree by the terms of use and privacy policy.
@@ -140,18 +155,19 @@ const LoginPage = () => {
            <ReCAPTCHA sitekey="6Le7pwQqAAAAAKWZz2cLo1zx0OIKy2fY3zftRIa8" onChange={Verifyfunc} 
            />
            <p id="check" className="text-grey"></p>
-          
+  
 
-          <Button property={`bg-black  p-2 rounded-[10px] ${recaptcha ? "" :"opacity-30"}`} disablefunc={!recaptcha}>
-            {status === "SignUp" ? "Create Account" : "SignIn"}
+          <Button property={`bg-black  p-2 font-semibold rounded-[10px] ${recaptcha ? "" :"opacity-30"}`} disablefunc={!recaptcha} >
+          {loading ? "Loading..." :status === "SignUp" ? "Create Account" : "SignIn"} 
+            {/* {status === "SignUp" ? "Create Account" : "SignIn"} */}
           </Button>
-
-        
+         {status==="SignIn" && <OAuth/>}
           {status === "SignIn" ? (
             <p>
               Create a new account?
               <Button
                 handleOnClick={() => {
+                navigate("/signup")
                   setStatus("SignUp");
                   setName("");
                   setEmail("");

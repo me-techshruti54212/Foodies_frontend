@@ -6,18 +6,28 @@ import ItemCard from "./ItemCard";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "./Button";
+
+import { useDispatch } from "react-redux";
+import { getCartData } from "../redux/slices/CartSlice";
 const Cart = () => {
   const navigate = useNavigate();
   const [activeCart, setActiveCart] = useState(false);
   const token=useSelector((state)=>state.signin.token)
-  const cartItems = useSelector((state) => state.cart.cart);
- 
-  // console.log(cartItems);
-  const totalQtyOfItems = cartItems.reduce(
+ const cartItems=useSelector((state)=>state.cart.cart)
+
+ const dispatch=useDispatch()
+
+  useEffect(()=>
+  {dispatch(getCartData(token));
+    console.log(cartItems)
+  },
+  [])
+  
+  const totalQtyOfItems = cartItems?.reduce(
     (totalQty, item) => totalQty + item.qty,
     0
   );
-  const totalPriceOfItems = cartItems.reduce(
+  const totalPriceOfItems = cartItems?.reduce(
     (totalQty, item) => totalQty + item.qty * item.price,
     0
   );
@@ -36,7 +46,7 @@ const Cart = () => {
           />
     
           <div className="flex flex-col gap-y-2 overflow-y-scroll max-h-full py-4 scrollbar-none">
-            {cartItems.length && token ? (
+            {cartItems?.length && token ? (
               <>
                 {cartItems.map((item, i) => (
                   <ItemCard item={item} key={i} />
@@ -79,8 +89,8 @@ const Cart = () => {
         </div>
       </div>
       <AiOutlineShoppingCart
-        className={`fixed bottom-[1rem] right-[1rem] bg-black text-5xl rounded-full p-2 cursor-pointer ${
-          totalQtyOfItems && "animate-bounce delay-500 transition-all"
+        className={`fixed bottom-[1rem] right-[1rem] bg-black text-5xl rounded-full p-2 cursor-pointer ${ 
+          cartItems?.length>0  ? "animate-bounce delay-500 transition-all":""
         }`}
         onClick={() => setActiveCart(true)}
       />

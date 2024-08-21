@@ -11,7 +11,7 @@ const MyOrdersList = ({ order }) => {
   return (
     <tbody className="bg-white border-b">
       <tr className="bg-white border-b">
-        <td className="px-6 py-4   w-[40%]">
+        <td className="px-6 py-4 w-[40%]">
           {order.items.map((item) => `${item.name} X ${item.qty} , `)}
         </td>
 

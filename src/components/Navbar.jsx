@@ -11,13 +11,17 @@ import { useDispatch } from "react-redux";
 import { openLogin, setToken } from "../redux/slices/SigninSlice";
 import profile_icon from "../assets/profile_icon.png";
 import toast, { Toaster } from "react-hot-toast";
+import { useStateContext } from "./GlobalContext/ContextProvider";
+import { getAuth, signOut } from "firebase/auth";
+import CartSlice, { removeAllItemsFromCart } from "../redux/slices/CartSlice";
+const auth = getAuth();
 
 const Navbar = () => {
   const [nav, setnav] = useState(false);
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cart);
   const [profile_dropdown, setProfile_DropDown] = useState(false);
-
+  const {currentUser} =useStateContext()
   const dispatch = useDispatch();
   const token = useSelector((state) => state.signin.token);
   const handleNav = () => {
@@ -25,14 +29,22 @@ const Navbar = () => {
   };
 
   const menuRef = useRef();
-  const logout = () => {
+  const logout = async() => {
     localStorage.removeItem("token");
     localStorage.clear();
-
-    dispatch(setToken(""));
+    // await dispatch()
+    await dispatch(setToken(""));
+   await dispatch(removeAllItemsFromCart())
     navigate("/");
     setProfile_DropDown(false);
+    signOut(auth).then(() => {
+      console.log("LoggedOut")
+      console.log("currentUser",currentUser)
+    }).catch((error) => {
+      console.log(error)
+    });
   };
+ 
   useEffect(() => {
     const handler = (e) => {
       if (!menuRef.current?.contains(e.target)) {
@@ -58,14 +70,14 @@ const Navbar = () => {
         <div
           className={`${
             nav
-              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#1AC073] h-[100vh] justify-center "
+              ? "flex flex-col gap-10 absolute right-0 top-[0] w-[100%] text-center bg-[#1AC073] h-[100vh] justify-center z-50"
               : "hidden"
           } sm:flex gap-7`}
         >
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/menu">Menu</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/" onClick={()=>setnav(false)}>Home</NavLink>
+          <NavLink to="/about" onClick={()=>setnav(false)}>About</NavLink>
+          <NavLink to="/menu" onClick={()=>setnav(false)}>Menu</NavLink>
+          <NavLink to="/contact" onClick={()=>setnav(false)}>Contact Us</NavLink>
         </div>
 
         <div className="flex gap-3 items-center relative ">
@@ -102,8 +114,8 @@ const Navbar = () => {
           ) : (
             <div className="flex flex-col relative" ref={menuRef}>
               <img
-                src={profile_icon}
-                className="sm:w-[28px] w-[24px] p-1 cursor-pointer  "
+                src={currentUser ? `${currentUser.photoURL}`: profile_icon}
+                className={ `${currentUser ? "w-[34px] sm:w-[38px] p-1  rounded-full ": "w-[18px] sm:w-[21px] ml-2"} cursor-pointer`} 
                 onClick={() => setProfile_DropDown(!profile_dropdown)}
               />
               {profile_dropdown && (
@@ -127,7 +139,7 @@ const Navbar = () => {
               )}
             </div>
           )}
-          <div onClick={handleNav} className="sm:hidden">
+          <div onClick={handleNav} className="sm:hidden z-50">
             {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu  className="w-[23px]" />}
           </div>
         </div>

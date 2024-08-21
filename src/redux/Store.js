@@ -12,6 +12,7 @@ import { FLUSH, REHYDRATE, PAUSE,PERSIST,PURGE,REGISTER,} from 'redux-persist'
 import OrderSlice from "./slices/OrderSlice";
 
 import FetchOrdersSlice from "./slices/FetchOrdersSlice";
+import ForgotPasswordSlice from "./slices/ForgotPasswordSlice";
 // import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
@@ -26,7 +27,8 @@ const reducer = combineReducers({
   signin: SigninSlice,
   foodlist: FetchFoodListSlice,
   order:OrderSlice,
-  foodorders:FetchOrdersSlice,
+  foodorders: FetchOrdersSlice,
+  fgtpwd:ForgotPasswordSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

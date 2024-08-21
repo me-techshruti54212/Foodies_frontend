@@ -1,12 +1,14 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { PlaceFoodOrder } from "../redux/slices/OrderSlice";
 import { useDispatch } from "react-redux";
 import { removeAllItemsFromCart } from "../redux/slices/CartSlice";
 import { TailSpin } from "react-loader-spinner";
 const PlaceOrder = () => {
+  const navigate=useNavigate()
   const [firstName, setfirstName] = useState("");
   const [lastName,setlastName]=useState("")
   const [email,setEmail]=useState("")
@@ -26,7 +28,10 @@ const PlaceOrder = () => {
   );
   useEffect(()=>{
     window.scroll(0,0);
-
+    if(cartItems.length==0 || !token) 
+    {
+      navigate("/");
+    }
   },[])
   const placeOrder=async(e)=>{
     e.preventDefault();
