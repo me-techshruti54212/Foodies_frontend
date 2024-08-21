@@ -10,7 +10,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ContextProvider } from "./components/GlobalContext/ContextProvider.jsx";
 
 let persistor = persistStore(Store);
-
 // Store.subscribe(()=>console.log(Store.getState()))
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
