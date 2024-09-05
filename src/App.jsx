@@ -15,7 +15,7 @@ import ResetPassword from "./components/ResetPassword";
 import Verifymail from "./components/Verifymail";
 import SignUp from "./components/SignUp";
 import OtpVerification from "./components/OtpVerification";
-import ContactUs from "./components/ContactUs";
+
 const App = () => {
   return (
     <BrowserRouter basename="/Foodies_frontend">
@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
         <Route path="/verifyemail" element={<Verifymail />} />
         <Route path="/otp-verification" element={<OtpVerification />} />
-        <Route path="/contact-us" element={<ContactUs/>}/>
+       
       </Routes>
     </BrowserRouter>
   );

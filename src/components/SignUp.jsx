@@ -90,7 +90,7 @@ if(showErr) {toast.error("Please enter valid details");return false;}
     <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s] ">
 
       <form
-        className="flex flex-col flex-wrap p-4 gap-4 border rounded-[25px] bg-[#7edd7e]"
+        className="flex flex-col flex-wrap p-4 gap-4 border rounded-[25px] bg-[#7edd7e] w-[35%]"
         onSubmit={handleEventSignUp}
       >
         <div className="flex items-center justify-between">
@@ -117,7 +117,7 @@ if(showErr) {toast.error("Please enter valid details");return false;}
             onChange={(e)=>setName(e.target.value)}
             className="p-2 rounded-[10px] text-black outline-none"
           />
-          <p  id="signNameWrong" className='``'>Name should only consists of alphabet without any whitespaces</p>
+          <p  id="signNameWrong" className='``'>**Name should only consists of alphabet without any whitespaces</p>
         <input
           type="email"
           placeholder="Enter your email"
@@ -127,7 +127,7 @@ if(showErr) {toast.error("Please enter valid details");return false;}
           onChange={(e)=>setEmail(e.target.value)}
           className="p-2 text-black  rounded-[10px] outline-none" 
         />
-          <p id="emailId">Invalid Email Address</p>
+          <p id="emailId">**Invalid Email Address</p>
 
         <div className="flex relative items-center">
         <input
@@ -150,7 +150,7 @@ if(showErr) {toast.error("Please enter valid details");return false;}
          
 
         </div>    
-        <p id='signInvalidPwdWrong' className=''>Password must be 1 uppercase 1 lowercase 1 number 1 special digit character and 8 or more characters</p>
+        <p id='signInvalidPwdWrong' className=''>**Password must be 1 uppercase 1 lowercase 1 number 1 special digit character and 8 or more characters</p>
         <p>
           <input type="checkbox" required />
           By continuing, I agree by the terms of use and privacy policy.

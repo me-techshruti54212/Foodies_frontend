@@ -46,9 +46,10 @@ const ForgotPassword = () => {
             property={"p-1 rounded border-2 bg-grey font-semibold flex gap-5 justify-center"}
         
           >
-            Get Reset Password link on mail{isLoading && 
+            Get Reset Password link on mail
+            {
            
-        <TailSpin 
+   isLoading ? <TailSpin 
           visible={true}
           height="20"
           width="20"
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
           radius="0.5"
           wrapperStyle={{}}
           wrapperClass=""
-        />
+        />:null
       
           }
           </Button>

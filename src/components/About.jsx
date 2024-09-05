@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from "../assets/foodies.png"
 const About = () => {
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
   return (  
     // <div  className='flex m-6 gap-6  h-[70vh] items-center lg:flex-nowrap flex-wrap justify-around' > 
     //   <div className='text-black '>

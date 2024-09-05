@@ -82,10 +82,10 @@ const handlePasswordGeneration=async(e)=>{
 }
   return (
    
-    <div className="mt-1 flex justify-center text-black flex-col items-center gap-2">
+    <div className="mt-1 flex justify-center text-black flex-col items-center gap-2 ">
       <h3 className="text-brand-dark text-center ">Reset password</h3>
 
-      <form className="flex flex-col  justify-center sm:w-[400px]  rounded-lg h-[400px] border-2 border-brand-light  p-4 bg-[#90EE90] gap-6" onSubmit={handlePasswordGeneration}>
+      <form className="flex flex-col flex-wrap justify-center sm:w-[400px]  rounded-lg h-[400px] border-2 border-brand-light  p-4 bg-[#90EE90] gap-6" onSubmit={handlePasswordGeneration}>
         <div className="flex flex-col gap-2 ">
           <label className="text-lg ">New password:</label>
           <input type="text" name="password" required className="outline-none  rounded-lg p-2"  value={input.password}
