@@ -4,7 +4,7 @@ import {getStorage} from "firebase/storage"
 import {getDatabase} from "firebase/database"
 import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail} from "firebase/auth";
 const firebaseConfig = {
-    apiKey: import.meta.env.apiKey,
+    apiKey: import.meta.env.VITE_APIKEY,
     authDomain: "foodies-121fc.firebaseapp.com",
     databaseURL: "https://foodies-121fc-default-rtdb.firebaseio.com",
     projectId: "foodies-121fc",
