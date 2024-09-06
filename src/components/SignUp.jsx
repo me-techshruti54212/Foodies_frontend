@@ -90,7 +90,7 @@ if(showErr) {toast.error("Please enter valid details");return false;}
     <div className="fixed top-0 w-full h-full flex items-center justify-center bg-[#00000090] transition-[1s] ">
 
       <form
-        className="flex flex-col flex-wrap p-4 gap-4 border rounded-[25px] bg-[#7edd7e] w-[35%]"
+        className="flex flex-col flex-wrap p-4 gap-4 border rounded-[25px] bg-[#7edd7e] md:w-[36%] sm:w-1/2 w-[75%]"
         onSubmit={handleEventSignUp}
       >
         <div className="flex items-center justify-between">

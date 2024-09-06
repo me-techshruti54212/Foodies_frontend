@@ -161,7 +161,7 @@ const LoginPage = () => {
           {loading ? "Loading..." :status === "SignUp" ? "Create Account" : "SignIn"} 
             {/* {status === "SignUp" ? "Create Account" : "SignIn"} */}
           </Button>
-         {status==="SignIn" && <OAuth/>}
+         {/* {status==="SignIn" && <OAuth/>} */}
           {status === "SignIn" ? (
             <p>
               Create a new account?

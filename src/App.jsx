@@ -15,8 +15,11 @@ import ResetPassword from "./components/ResetPassword";
 import Verifymail from "./components/Verifymail";
 import SignUp from "./components/SignUp";
 import OtpVerification from "./components/OtpVerification";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const token=useSelector((state)=>state.signin.token)
+
   return (
     <BrowserRouter basename="/Foodies_frontend">
       <Toaster position="top-right" reverseOrder={false} />
@@ -24,8 +27,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/placeorder" element={<PlaceOrder />} />
-        <Route path="/myorders" element={<MyOrders />} />
+        <Route path="/placeorder" element={token ? <PlaceOrder /> : <LoginPage/>} />
+        <Route path="/myorders" element={token ? <MyOrders /> : <LoginPage/>} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUp />} />
